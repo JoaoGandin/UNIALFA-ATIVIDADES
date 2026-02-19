@@ -10,7 +10,7 @@ tipo de dado[] nome do array = new tipo-de-dado[quantidade];
 
 Os arrays podem ser criado e inicializados de outra maneira, invés de utilizar o operador new, é possível definir os elementos do array entre **chaves** e separados por vírgula. Esses elementos devem ser do mesmo tipo da variável definida como array. A sintaxe é:
 ```
-Tipo-de-dao[] nome-do-array = { valores separados por vírgula}
+Tipo-de-dao[] nome-do-array = { valores separados por vírgula }
 ```
 
 ---
@@ -41,5 +41,3 @@ Cria um array com o nome que contém 2 elementos do tipo boolean e seu índice v
 String[] meses = new String[12];
 ```
 Cria um array com o nome meses que contém 12 elementos do tipo String e seu índice varia de 0 a 11.
-
-
