@@ -1,8 +1,8 @@
 # Arrays Unidimensionais em Java
 Os Arrays unidimensionais são os que possuem apenas um índice para acessar seu conteúdo eles são declarados da seguinte forma:
-´´´
+```
 tipo de dado[] nome do array = new tipo-de-dado[quantidade];
-´´´
+```
 
 **tipo de dado** -> pode ser qualquer tipo de variável.
 **nome do array** -> um nome válido; As mesmas regras para nomes de variáveis.
@@ -36,3 +36,4 @@ Cria um array com o nome que contém 2 elementos do tipo boolean e seu índice v
 String[] meses = new String[12];
 ```
 Cria um array com o nome meses que contém 12 elementos do tipo String e seu índice varia de 0 a 11.
+
