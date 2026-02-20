@@ -15,7 +15,7 @@ Tipo-de-dao[] nome-do-array = { valores separados por vírgula }
 
 ---
 
-__Exemplos__
+<span style="text-decoration:underline">Exemplos</span>
 
 ```java
 int[] numeros = new int[10];
@@ -41,4 +41,5 @@ Cria um array com o nome que contém 2 elementos do tipo boolean e seu índice v
 String[] meses = new String[12];
 ```
 Cria um array com o nome meses que contém 12 elementos do tipo String e seu índice varia de 0 a 11.
+
 
