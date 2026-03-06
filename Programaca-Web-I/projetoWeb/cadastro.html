@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Nunito:wght@700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <link rel="shortcut icon" href="./assets/icon/logoIcon.ico" type="image/x-icon">
+        <title>Cadastro | Materiais Pedagógicos</title>
+    </head>
+    <body>
+        <div>
+            <h1>Crie sua conta</h1>
+            <form action="">
+                <fieldset>
+                    <legend>Dados pessoais</legend>
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" placeholder="E-mail" required>
+                    <label for="nome">Nome</label>
+                    <input type="text" id="nome" name="nome" placeholder="Nome" required>
+                </fieldset>
+                
+                <fieldset>
+                    <legend>Sua senha</legend>
+                    <label for="senha">Senha</label>
+                    <input type="password" id="senha" name="senha" placeholder="Senha" required>
+                    <label for="senha_confirmar">Confirme sua senha</label>
+                    <input type="password" id="senha_confirmar" name="senha_confirmar" placeholder="Repita a senha" required>
+                </fieldset>
+                <button type="submit" class="btn-principal">Criar conta</button>
+                <a href="login.html" class="link-secundario">Já tenho conta</a>
+            </form>
+        </div>
+    </body>
+</html>
