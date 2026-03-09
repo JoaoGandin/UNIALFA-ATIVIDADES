@@ -1,8 +1,64 @@
 @import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
 
+:root {
+    --primary-color: #5FA8D3;
+    --text-color: #1F2937;
+    --bg-color: #F8FAFC;
+}
+
 /* Reset Universal */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+body{
+    font-family: "Inter", sans-serif;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+}
+
+header {
+    width: 100%;
+    background-color: #FFFFFF;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    width: 5rem;
+}
+
+header nav ul {
+    display: flex;
+    gap: 24px;
+}
+
+header nav ul li {
+    list-style: none;
+}
+
+header nav ul li a {
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--text-color);
+    transition: color 0.3s ease ;
+}
+
+header nav ul li a:hover{
+    color: var(--primary-color);
+}
+
+header div{
+    display: flex;
+    gap: 10px;
+}
+
+
+header div a img {
+    width: 1.5rem;
 }
