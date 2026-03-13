@@ -120,3 +120,43 @@ main section img{
     border-radius: 20px;
     box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);;
 }
+
+footer {
+    background-color: var(--text-color);
+    color: var(--bg-color);
+    padding: 60px 10%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.footer-column{
+    display: flex;
+    gap: 100px;
+}
+
+footer h4 {
+    margin-bottom: 16px;
+    font-family: var(--bg-color);
+    font-size: 1.2rem;
+}
+
+footer ul {
+    list-style: none;
+}
+
+footer ul li a {
+    color: var(--bg-color);
+    text-decoration: none;
+}
+
+.copyright {
+    width: 100%;
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1); /* Uma linha discreta para separar */
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
