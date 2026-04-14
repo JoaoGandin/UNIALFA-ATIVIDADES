@@ -541,6 +541,11 @@ footer ul li a {
     right: -100%; /* Fica ancorado totalmente fora da tela */
     transition: right 0.3s ease-in-out; /* Suaviza a entrada */ 
 }
+/* Isso vai empilhar os links verticalmente e centralizá-los. */
+.menu-mobile ul {
+    flex-direction: column;
+    align-items: center;
+}
 
 /* Os links dentro do menu mobile */
 .menu-mobile a {
