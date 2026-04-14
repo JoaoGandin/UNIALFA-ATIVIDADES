@@ -280,9 +280,12 @@ footer ul li a {
     gap: 16px;
     
 }
-.contato li img{
+
+.icone-contato {
+    
     margin: 0;
     width: 96px;
+    background-color: var(--bg-color);
 }
 
 .contato li a {
