@@ -295,6 +295,28 @@ footer ul li a {
     font-size: 1rem;  /* Reduz o tamanho de fonte */
 }
 
+/* sobre */
+
+.sobre{
+    display: flex;
+    flex-direction: column;
+    max-width: 1400px;           /* Limite a largura máxima */
+    margin: 0 auto;             /* Centraliza a div */
+    padding: 0 20px;            /* Padding lateral */
+    text-align: justify;        /* Texto justificado */
+}
+
+.sobre p{
+    margin-bottom: 24px;        /* Espaço entre parágrafos */
+    line-height: 1.8;           /* Altura de linha para melhor legibilidade */
+    font-size: 1.5rem;         /* Tamanho de fonte um pouco maior */
+    color: var(--p-text-color); /* Cor padrão do texto */
+}
+
+.sobre p:last-child {
+    margin-bottom: 0;           /* Remove margem do último parágrafo */
+}
+
 /* ========================================= */
 /* RESPONSIVIDADE (MEDIA QUERIES)            */
 /* ========================================= */
