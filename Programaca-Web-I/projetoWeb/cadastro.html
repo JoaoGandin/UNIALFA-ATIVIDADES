@@ -33,6 +33,74 @@
                 </a>
             </div>
         </header>
+        <main>
+            <section class="formulario-secao">
+                <div class="formulario-container">
+                    <h1>Criar Cadastro</h1>
+                    <p class="formulario-descricao">Cadastre-se para ter acesso aos melhores produtos</p>
+                    
+                    <form class="formulario" aria-label="Formulário de cadastro">
+                        <div class="form-group">
+                            <label for="nome-cadastro">Nome Completo</label>
+                            <input 
+                                type="text" 
+                                id="nome-cadastro" 
+                                name="nome" 
+                                placeholder="Seu nome completo"
+                                required
+                                aria-required="true"
+                                aria-label="Campo de nome completo para cadastro"
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email-cadastro">E-mail</label>
+                            <input 
+                                type="email" 
+                                id="email-cadastro" 
+                                name="email" 
+                                placeholder="seu@email.com"
+                                required
+                                aria-required="true"
+                                aria-label="Campo de e-mail para cadastro"
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="senha-cadastro">Senha</label>
+                            <input 
+                                type="password" 
+                                id="senha-cadastro" 
+                                name="senha" 
+                                placeholder="••••••••"
+                                required
+                                aria-required="true"
+                                aria-label="Campo de senha para cadastro"
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="confirmacao-senha">Confirmar Senha</label>
+                            <input 
+                                type="password" 
+                                id="confirmacao-senha" 
+                                name="confirmacao_senha" 
+                                placeholder="••••••••"
+                                required
+                                aria-required="true"
+                                aria-label="Campo de confirmação de senha"
+                            >
+                        </div>
+
+                        <button type="submit" class="btn-formulario">Cadastrar</button>
+                    </form>
+
+                    <div class="formulario-link">
+                        <p>Já tem uma conta? <a href="login.html">Fazer login</a></p>
+                    </div>
+                </div>
+            </section>
+        </main>
         <footer>
             <div class="footer-column">
                 <div>
