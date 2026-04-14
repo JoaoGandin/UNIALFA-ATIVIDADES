@@ -554,3 +554,163 @@ footer ul li a {
     right: 0; /* Cola o menu na borda direita da tela, deixando visível */
 }
 }
+
+/* ========================================= */
+/* CARRINHO LATERAL (SIDE DRAWER)             */
+/* ========================================= */
+
+/* Overlay Semi-transparente (Fundo escuro atrás do carrinho) */
+.overlay-carrinho {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo preto com 50% de transparência */
+    z-index: 998; /* Fica atrás do carrinho, mas na frente de tudo mais */
+    opacity: 0; /* Invisível por padrão */
+    visibility: hidden; /* Não pode ser clicado */
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out; /* Suave */
+}
+
+/* Quando o overlay está ativo */
+.overlay-carrinho.ativo {
+    opacity: 1; /* Fica visível */
+    visibility: visible; /* Pode ser clicado */
+}
+
+/* Carrinho Lateral */
+.carrinho-lateral {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%; /* 100% em mobile, 400px em desktop */
+    max-width: 400px;
+    height: 100vh; /* Altura total da tela */
+    background-color: #FFFFFF;
+    box-shadow: -4px 0 15px rgba(0, 0, 0, 0.2); /* Sombra na lateral esquerda */
+    display: flex;
+    flex-direction: column;
+    z-index: 999; /* Fica na frente de tudo */
+    right: -100%; /* Começa totalmente fora da tela */
+    transition: right 0.3s ease-in-out; /* Animação suave ao deslizar */
+}
+
+/* Quando o carrinho está ativo (visível) */
+.carrinho-lateral.ativo {
+    right: 0; /* Cola na borda direita da tela */
+}
+
+/* Cabeçalho do Carrinho */
+.carrinho-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #E5E7EB;
+    background-color: #FFFFFF;
+}
+
+.carrinho-header h2 {
+    font-family: "Nunito", sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--text-color);
+    margin: 0;
+}
+
+/* Botão de Fechar (X) */
+.btn-fechar {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: var(--text-color);
+    cursor: pointer;
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.3s ease;
+}
+
+.btn-fechar:hover {
+    color: var(--primary-color);
+}
+
+/* Área com os itens do carrinho (rola se necessário) */
+.carrinho-itens {
+    flex: 1;
+    overflow-y: auto; /* Permite scroll se houver muitos itens */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Mensagem quando o carrinho está vazio */
+.carrinho-vazio {
+    text-align: center;
+    color: var(--p-text-color);
+    font-size: 1rem;
+    padding: 40px 20px;
+}
+
+/* Rodapé do Carrinho */
+.carrinho-footer {
+    padding: 20px;
+    border-top: 1px solid #E5E7EB;
+    background-color: #F8FAFC;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Total de preço */
+.carrinho-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.1rem;
+}
+
+.carrinho-total span {
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+.carrinho-total strong {
+    color: var(--primary-color);
+    font-size: 1.25rem;
+}
+
+/* Botão Finalizar Compra */
+.btn-finalizar {
+    width: 100%;
+    padding: 14px;
+    background-color: var(--primary-color);
+    color: #FFFFFF;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-family: "Inter", sans-serif;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-finalizar:hover {
+    background-color: var(--btn-hover);
+}
+
+.btn-finalizar:active {
+    transform: scale(0.98);
+}
+
+/* Responsividade do Carrinho */
+@media (max-width: 768px) {
+    .carrinho-lateral {
+        max-width: 85%; /* Em telas pequenas, deixa um pouco de espaço */
+    }
+}

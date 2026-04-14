@@ -120,6 +120,30 @@
             </div>
             <p class="copyright"> &copy; 2026 Materiais Pedagógicos - Todos os direitos reservados</p>
         </footer>
+
+        <!-- CARRINHO LATERAL -->
+        <div class="overlay-carrinho" id="overlay-carrinho" aria-hidden="true"></div>
+        <aside class="carrinho-lateral" id="carrinho-lateral" aria-label="Carrinho de compras">
+            <div class="carrinho-header">
+                <h2>Seu Carrinho</h2>
+                <button id="fechar-carrinho" class="btn-fechar" aria-label="Fechar carrinho">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            
+            <div class="carrinho-itens">
+                <p class="carrinho-vazio">Seu carrinho está vazio.</p>
+            </div>
+            
+            <div class="carrinho-footer">
+                <div class="carrinho-total">
+                    <span>Total:</span>
+                    <strong id="carrinho-total-valor">R$ 0,00</strong>
+                </div>
+                <button class="btn-finalizar" aria-label="Finalizar compra">Finalizar Compra</button>
+            </div>
+        </aside>
+
         <script src="script.js"></script>
     </body>
 </html>
