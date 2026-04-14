@@ -19,7 +19,9 @@ body{
     font-family: "Inter", sans-serif;
     color: var(--text-color);
     background-color: var(--bg-color);
+    overflow-x: hidden; /* Evita que a barra de rolagem horizontal apareça quando o menu mobile estiver aberto */
 }
+/* header */
 
 header {
     width: 100%;
@@ -70,11 +72,12 @@ header div a img {
 header div a img:hover {
     transform: scale(1.1);
 }
-
+/* main */
 main {
-    max-width: 1200px;
+    max-width: 1920px;
     margin: 32px auto;
-    padding: 0 16px;
+    margin-bottom: 80px;
+    padding: 0 80px;
     text-align: center;
 }
 
@@ -95,15 +98,15 @@ main section p {
 }
 
 main section a{
-    display: inline-block;
-    padding: 12px 32px;;
-    margin: 0 auto 24px auto;
+    display: inline-block; /* Ocupa só o tamanho do texto + padding */
+    padding: 12px 32px;
+    margin: 0 auto 32px auto; /* Centraliza horizontalmente e adiciona margem inferior */
     background-color: var(--primary-color);
     color: #FFFFFF;
     border-radius: 8px;
     text-decoration: none;
-    font-family: "inter", sans-serif;
-    font-weight: 500;
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
     font-size: 1.1rem;
     transition: background-color 0.3s ease;
 }
@@ -114,11 +117,11 @@ main section a:hover{
 
 main section img{
     display: block;
-    margin: 0 auto;
+    margin: 0 auto; 
     max-width: 500px;
     width: 100%;
     border-radius: 20px;
-    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 footer {
@@ -159,4 +162,202 @@ footer ul li a {
     border-top: 1px solid rgba(255, 255, 255, 0.1); /* Uma linha discreta para separar */
     font-size: 0.9rem;
     opacity: 0.8;
+}
+
+/* Catalogo */
+.produtos-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 24px;
+    margin-top: 40px;
+    text-align: left; /* ISSO AQUI MATA O TEXTO CENTRALIZADO DA HOME! */
+}
+
+.produtos-card{
+    display: flex;
+    flex-direction: column;
+    background-color: #FFFFFF;
+    border-radius: 12px;
+    gap: 16px;
+    padding: 16px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
+    min-height: 400px;
+    cursor: default;
+}
+
+.produtos-card img {
+    /* Faz a imagem crescer para ignorar o padding de 16px do card pai */
+    width: calc(100% + 32px); 
+    
+    /* Puxa a imagem para as extremidades, anulando o recuo do padding */
+    margin-left: -16px;
+    margin-top: -16px;
+    
+    /* Arredonda apenas os cantos superiores (Top-L, Top-R, Bot-R, Bot-L) */
+    border-radius: 12px 12px 0px 0px;
+    
+    /* Define uma altura fixa para manter todos os cards alinhados */
+    height: 240px;
+    
+    /* Faz a imagem preencher o espaço sem distorcer (mantém a proporção) */
+    object-fit: cover;
+    object-position: top; /* Força o topo da foto a aparecer sempre */
+}
+
+.produtos-card h3 {
+    font-family: "Nunito", sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.produtos-card .descricao{
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    color: var(--p-text-color);
+    font-size: 0.85rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Número de linhas que quero mostrar */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Adiciona os "..." automaticamente */
+    height: 3rem; /* Garante que todos ocupem o espaço de 2 linhas, mesmo os curtos */
+}
+
+.produtos-card .preco{
+    font-family: "Inter", sans-serif;
+    font-weight: 700;
+    color: var(--primary-color);
+    font-size: 1.1rem;
+}
+
+.produtos-card button{
+    font-weight: 600;
+    font-family: "Inter", sans-serif;
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 8px;
+    width: 100%;
+    padding: 10px;
+    color: var(--bg-color);
+    cursor: pointer;
+    margin-top: auto;
+    transition: 0.3s ease;
+}
+
+.produtos-card button:hover{
+    background-color: var(--btn-hover);
+}
+
+/* Estilo do Menu Mobile (Gaveta) */
+/* Tirando a visibilidade do menu hamburguer */
+.menu-hamburguer {
+    display: none;
+}
+
+.btn-mobile {
+    background: none;
+    border: none;
+}
+
+
+/* ========================================= */
+/* RESPONSIVIDADE (MEDIA QUERIES)            */
+/* ========================================= */
+
+/* Degrau 1: Notebooks e Telas Médias (Até 1440px) */
+@media (max-width: 1440px) {
+    .produtos-grid {
+        grid-template-columns: repeat(4, 1fr); /* Cai para 4 colunas */
+    }
+}
+
+/* Degrau 2: Tablets e Notebooks Pequenos (Até 1024px) */
+@media (max-width: 1024px) {
+    main {
+        padding: 0 40px; /* Diminui a borda branca lateral para dar espaço aos cards */
+    }
+    .produtos-grid {
+        grid-template-columns: repeat(3, 1fr); /* Cai para 3 colunas */
+    }
+}
+
+/* Degrau 3: Celulares e Tablets em pé (Até 768px) */
+@media (max-width: 768px) {
+    /* 1. O SALVADOR DO HEADER: Esconde os links para não estourar a tela */
+    header nav {
+        display: none; 
+    }
+
+    /* 2. Ajuste do Container Principal */
+    main {
+        padding: 0 16px; /* Reduz aquela borda gigante de 80px para apenas 16px */
+    }
+
+    /* 3. O Grid do Catálogo (2 Colunas) */
+    .produtos-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px; /* Corredor mais fino entre os produtos */
+    }
+
+    /* 4. Emagrecendo o Card para a tela pequena */
+    .produtos-card {
+        padding: 12px; /* Diminuímos o padding interno de 16px para 12px */
+        gap: 8px;
+        min-height: 320px;
+    }
+
+    /* 5. Reajustando a Mágica da Imagem (Acompanhando o novo padding) */
+    .produtos-card img {
+        width: calc(100% + 24px); /* 100% + 12px de cada lado = 24px */
+        margin-left: -12px;
+        margin-top: -12px;
+        height: 150px; /* Imagem mais baixa para não ocupar a tela toda */
+    }
+
+    /* 6. Salvando o Botão */
+    .produtos-card button {
+        font-size: 0.8rem; /* Diminui a letra para caber "Adicionar ao Carrinho" */
+        padding: 8px 4px;
+    }
+    
+    .produtos-card h3 {
+        font-size: 0.9rem;
+    }
+
+    .menu-hamburguer {
+        display: block; /* Exibe o menu hamburguer */
+        width: 1.5rem;
+    }
+
+    .menu-mobile {
+    position: fixed; /* Fica fixo na tela, mesmo se rolar a página */
+    top: 0;
+    right: 0;
+    width: 70%; /* Ocupa 70% da tela (estilo gaveta) ou 100% (tela cheia) */
+    height: 100vh; /* Altura total da tela */
+    background-color: #FFFFFF;
+    box-shadow: -4px 0 15px rgba(0, 0, 0, 0.1); /* Sombra legal na lateral */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 32px; /* Espaço entre os links */
+    z-index: 999; /* Garante que fique por cima de tudo no site */
+    
+    /* A Mágica da Animação: Joga o menu para fora da tela */
+    right: -100%; /* Fica ancorado totalmente fora da tela */
+    transition: right 0.3s ease-in-out; /* Suaviza a entrada */ 
+}
+
+/* Os links dentro do menu mobile */
+.menu-mobile a {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+/* A classe que o JavaScript vai adicionar para abrir o menu! */
+.menu-mobile.ativo {
+    right: 0; /* Cola o menu na borda direita da tela, deixando visível */
+}
 }
