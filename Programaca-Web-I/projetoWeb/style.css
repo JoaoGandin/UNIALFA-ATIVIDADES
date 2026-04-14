@@ -20,6 +20,10 @@ body{
     color: var(--text-color);
     background-color: var(--bg-color);
     overflow-x: hidden; /* Evita que a barra de rolagem horizontal apareça quando o menu mobile estiver aberto */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* vh = viewport height (altura da tela) */
+    margin: 0;
 }
 /* header */
 
@@ -74,6 +78,7 @@ header div a img:hover {
 }
 /* main */
 main {
+    flex: 1;
     max-width: 1920px;
     margin: 32px auto;
     margin-bottom: 80px;
@@ -258,6 +263,9 @@ footer ul li a {
     background: none;
     border: none;
 }
+
+/* contato */
+
 
 
 /* ========================================= */
