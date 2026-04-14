@@ -266,7 +266,31 @@ footer ul li a {
 
 /* contato */
 
+.contato{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 32px;
+}
 
+.contato li{
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    
+}
+.contato li img{
+    margin: 0;
+    width: 96px;
+}
+
+.contato li a {
+    padding: 12px 32px;  /* Remove o padding */
+    margin: 0;  /* Remove a margem */
+    background-color: var(--primary-color);  /* Deixa o texto na cor azul */
+    font-size: 1rem;  /* Reduz o tamanho de fonte */
+}
 
 /* ========================================= */
 /* RESPONSIVIDADE (MEDIA QUERIES)            */
