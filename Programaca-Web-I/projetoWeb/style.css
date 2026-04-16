@@ -662,6 +662,91 @@ footer ul li a {
     padding: 40px 20px;
 }
 
+/* ========================================= */
+/* ITENS DENTRO DO CARRINHO                  */
+/* ========================================= */
+
+/* Container de cada item no carrinho */
+.carrinho-item {
+    display: flex;
+    gap: 12px;
+    padding: 12px;
+    background-color: #F8FAFC;
+    border-radius: 8px;
+    border: 1px solid #E5E7EB;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.carrinho-item:hover {
+    background-color: #EFF6FF;
+    border-color: var(--primary-color);
+}
+
+/* Imagem do produto no carrinho */
+.carrinho-item-imagem {
+    flex-shrink: 0; /* Não deixa a imagem encolher */
+    width: 70px;
+    height: 70px;
+    border-radius: 6px;
+    overflow: hidden; /* Garante que a imagem não ultrapasse o border-radius */
+    background-color: #E5E7EB;
+}
+
+.carrinho-item-imagem img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Preenche o espaço mantendo a proporção */
+}
+
+/* Informações do produto (nome e preço) */
+.carrinho-item-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+}
+
+.carrinho-item-info h4 {
+    margin: 0;
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--text-color);
+}
+
+.carrinho-item-preco {
+    margin: 0;
+    font-family: "Inter", sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--primary-color);
+}
+
+/* Botão para remover item */
+.carrinho-item-remover {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    background-color: transparent;
+    border: 1px solid #E5E7EB;
+    border-radius: 4px;
+    color: var(--text-color);
+    font-size: 1.4rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.carrinho-item-remover:hover {
+    background-color: #FEE2E2;
+    border-color: #EF4444;
+    color: #EF4444;
+}
+
 /* Rodapé do Carrinho */
 .carrinho-footer {
     padding: 20px;
