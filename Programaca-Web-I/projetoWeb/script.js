@@ -269,3 +269,70 @@ if (formularioCadastro) {
         }
     });
 }
+
+/* ========================================= */
+/* FORMULÁRIO DE LOGIN                       */
+/* ========================================= */
+
+// CAPTURAR O FORMULÁRIO E O BOTÃO SUBMIT
+const formularioLogin = document.querySelector('form[aria-label="Formulário de login"]');
+
+// Verificar se o formulário existe (pode não estar em todas as páginas)
+if (formularioLogin) {
+    // Capturar o botão submit dentro do formulário
+    const btnSubmitLogin = formularioLogin.querySelector('button[type="submit"]');
+    const textoBotaoLoginOriginal = btnSubmitLogin.textContent;
+
+    // ESCUTAR O EVENTO SUBMIT DO FORMULÁRIO
+    formularioLogin.addEventListener('submit', async (e) => {
+        // Prevenir o comportamento padrão de envio do formulário
+        e.preventDefault();
+
+        // COLETAR OS VALORES DOS CAMPOS
+        const email = document.getElementById('email-login').value.trim();
+        const senha = document.getElementById('senha-login').value;
+
+        // DESABILITAR O BOTÃO E MUDAR O TEXTO
+        btnSubmitLogin.disabled = true;
+        btnSubmitLogin.textContent = 'Entrando...';
+
+        try {
+            // CRIAR FORMDATA E ADICIONAR OS CAMPOS
+            const formData = new FormData();
+            formData.append('email', email);
+            formData.append('senha', senha);
+
+            // ENVIAR REQUISIÇÃO FETCH
+            const resposta = await fetch('backend/api/usuarios/login.php', {
+                method: 'POST',
+                body: formData
+            });
+
+            // CONVERTER A RESPOSTA PARA JSON
+            const dados = await resposta.json();
+
+            // VERIFICAR SE FOI SUCESSO OU ERRO
+            if (dados.sucesso === true) {
+                // SUCESSO: Exibir mensagem e redirecionar
+                alert(dados.mensagem);
+                
+                // Limpar os campos do formulário
+                formularioLogin.reset();
+                
+                // Redirecionar para a página inicial
+                window.location.href = 'index.html';
+            } else {
+                // ERRO: Exibir mensagem de erro
+                alert(dados.mensagem);
+            }
+        } catch (erro) {
+            // ERRO DE CONEXÃO OU OUTRO PROBLEMA
+            console.error('Erro ao fazer login:', erro);
+            alert('Erro ao conectar ao servidor. Tente novamente mais tarde.');
+        } finally {
+            // REABILITAR O BOTÃO E RESTAURAR O TEXTO (SEMPRE)
+            btnSubmitLogin.disabled = false;
+            btnSubmitLogin.textContent = textoBotaoLoginOriginal;
+        }
+    });
+}
