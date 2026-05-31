@@ -336,3 +336,96 @@ if (formularioLogin) {
         }
     });
 }
+
+/* ========================================= */
+/* CARREGAMENTO DE PRODUTOS DO CATÁLOGO      */
+/* ========================================= */
+
+// CAPTURAR A GRID DE PRODUTOS
+const produtosGrid = document.querySelector('.produtos-grid');
+
+// Verificar se a grid existe na página (pode não estar em todas as páginas)
+if (produtosGrid) {
+    // FUNÇÃO: Carregar Produtos da API
+    async function carregarProdutos() {
+        try {
+            // EXIBIR MENSAGEM DE CARREGAMENTO
+            produtosGrid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; padding: 20px;">Carregando produtos...</p>';
+
+            // FAZER REQUISIÇÃO FETCH GET
+            const resposta = await fetch('backend/api/produtos/produtos.php', {
+                method: 'GET'
+            });
+
+            // CONVERTER A RESPOSTA PARA JSON
+            const dados = await resposta.json();
+
+            // LIMPAR A GRID
+            produtosGrid.innerHTML = '';
+
+            // VERIFICAR SE HÁ PRODUTOS
+            if (!dados.produtos || dados.produtos.length === 0) {
+                produtosGrid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; padding: 20px;">Nenhum produto cadastrado ainda.</p>';
+                return;
+            }
+
+            // ITERAR SOBRE OS PRODUTOS E CRIAR OS CARDS
+            dados.produtos.forEach((produto) => {
+                // FORMATAR O PREÇO (converter ponto para vírgula)
+                const precoFormatado = parseFloat(produto.preco).toFixed(2).replace('.', ',');
+                
+                // USAR IMAGEM PADRÃO SE NÃO HOUVER IMAGEM
+                const imagemProduto = produto.imagem || 'assets/images/card1.png';
+
+                // CRIAR O ELEMENTO HTML DO CARD
+                const card = document.createElement('div');
+                card.className = 'produtos-card';
+                card.innerHTML = `
+                    <img src="${imagemProduto}" alt="${produto.nome}">
+                    <h3>${produto.nome}</h3>
+                    <p class="descricao">${produto.descricao}</p>
+                    <p class="preco">R$ ${precoFormatado}</p>
+                    <button data-id="${produto.id}">Adicionar ao Carrinho</button>
+                `;
+
+                // ADICIONAR O CARD NA GRID
+                produtosGrid.appendChild(card);
+            });
+
+            // REATRIBUIR OS EVENT LISTENERS DOS BOTÕES
+            reatribuirEventListenersBotoes();
+
+        } catch (erro) {
+            // ERRO AO CARREGAR OS PRODUTOS
+            console.error('Erro ao carregar produtos:', erro);
+            produtosGrid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; padding: 20px; color: red;">Erro ao carregar produtos.</p>';
+        }
+    }
+
+    // FUNÇÃO: Reatribuir Event Listeners dos Botões
+    function reatribuirEventListenersBotoes() {
+        // SELECIONAR TODOS OS BOTÕES "ADICIONAR" DA GRID
+        const botoesAdicionarCarrinho = produtosGrid.querySelectorAll('button');
+
+        // ADICIONAR EVENT LISTENER EM CADA BOTÃO
+        botoesAdicionarCarrinho.forEach((botao) => {
+            botao.addEventListener('click', (evento) => {
+                // ENCONTRAR O CARD PAI DO BOTÃO
+                const card = evento.target.closest('.produtos-card');
+
+                // EXTRAIR OS DADOS DO CARD
+                const nomeProduto = card.querySelector('h3').textContent;
+                const precoProduto = card.querySelector('.preco').textContent;
+                const imagemProduto = card.querySelector('img').getAttribute('src');
+
+                // CHAMAR A FUNÇÃO PARA ADICIONAR AO CARRINHO
+                adicionarProdutoAoCarrinho(nomeProduto, precoProduto, imagemProduto);
+
+                console.log('✓ Produto adicionado ao carrinho:', { nomeProduto, precoProduto, imagemProduto });
+            });
+        });
+    }
+
+    // CHAMAR A FUNÇÃO PARA CARREGAR OS PRODUTOS AO INICIAR A PÁGINA
+    carregarProdutos();
+}
