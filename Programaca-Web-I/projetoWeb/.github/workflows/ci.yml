@@ -1,0 +1,27 @@
+name: CI - Loja Pedagógica
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v3
+
+      - name: Verificar sintaxe PHP
+        run: find . -name "*.php" -exec php -l {} \;
+
+      - name: Verificar se o Dockerfile existe
+        run: test -f Dockerfile && echo "Dockerfile encontrado" || exit 1
+
+      - name: Build da imagem Docker
+        run: docker build -t loja-pedagogica .
+
+      - name: Verificar se o docker-compose.yml existe
+        run: test -f docker-compose.yml && echo "docker-compose.yml encontrado" || exit 1
