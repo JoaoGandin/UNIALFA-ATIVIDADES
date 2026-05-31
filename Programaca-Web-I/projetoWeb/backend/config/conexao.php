@@ -10,11 +10,11 @@
 // Definir headers para UTF-8
 header('Content-Type: text/html; charset=utf-8');
 
-// Configurações de conexão
-$host = 'localhost';
-$usuario = 'root';
-$senha = '';
-$banco = 'loja_pedagogica';
+// Configurações de conexão (suporta Docker e XAMPP local)
+$host = getenv('DB_HOST') ?: 'localhost';
+$usuario = getenv('DB_USER') ?: 'root';
+$senha = getenv('DB_PASSWORD') ?: '';
+$banco = getenv('DB_NAME') ?: 'loja_pedagogica';
 
 // Criar conexão com MySQLi
 $conn = new mysqli($host, $usuario, $senha, $banco);
