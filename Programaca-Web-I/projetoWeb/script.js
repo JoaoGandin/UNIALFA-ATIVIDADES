@@ -198,3 +198,74 @@ botoesAdicionar.forEach((botao) => {
         console.log('✓ Produto adicionado:', { nomeProduto, precoProduto, imagemProduto });
     });
 });
+
+/* ========================================= */
+/* FORMULÁRIO DE CADASTRO                    */
+/* ========================================= */
+
+// CAPTURAR O FORMULÁRIO E O BOTÃO SUBMIT
+const formularioCadastro = document.querySelector('form[aria-label="Formulário de cadastro"]');
+
+// Verificar se o formulário existe (pode não estar em todas as páginas)
+if (formularioCadastro) {
+    // Capturar o botão submit dentro do formulário
+    const btnSubmitCadastro = formularioCadastro.querySelector('button[type="submit"]');
+    const textoBotaoOriginal = btnSubmitCadastro.textContent;
+
+    // ESCUTAR O EVENTO SUBMIT DO FORMULÁRIO
+    formularioCadastro.addEventListener('submit', async (e) => {
+        // Prevenir o comportamento padrão de envio do formulário
+        e.preventDefault();
+
+        // COLETAR OS VALORES DOS CAMPOS
+        const nome = document.getElementById('nome-cadastro').value.trim();
+        const email = document.getElementById('email-cadastro').value.trim();
+        const senha = document.getElementById('senha-cadastro').value;
+        const confirmacaoSenha = document.getElementById('confirmacao-senha').value;
+
+        // DESABILITAR O BOTÃO E MUDAR O TEXTO
+        btnSubmitCadastro.disabled = true;
+        btnSubmitCadastro.textContent = 'Cadastrando...';
+
+        try {
+            // CRIAR FORMDATA E ADICIONAR OS CAMPOS
+            const formData = new FormData();
+            formData.append('nome', nome);
+            formData.append('email', email);
+            formData.append('senha', senha);
+            formData.append('confirmacao_senha', confirmacaoSenha);
+
+            // ENVIAR REQUISIÇÃO FETCH
+            const resposta = await fetch('backend/api/usuarios/cadastrar.php', {
+                method: 'POST',
+                body: formData
+            });
+
+            // CONVERTER A RESPOSTA PARA JSON
+            const dados = await resposta.json();
+
+            // VERIFICAR SE FOI SUCESSO OU ERRO
+            if (dados.sucesso === true) {
+                // SUCESSO: Exibir mensagem e redirecionar
+                alert(dados.mensagem);
+                
+                // Limpar os campos do formulário
+                formularioCadastro.reset();
+                
+                // Redirecionar para a página de login
+                window.location.href = 'login.html';
+            } else {
+                // ERRO: Exibir mensagem de erro
+                alert(dados.mensagem);
+            }
+        } catch (erro) {
+            // ERRO DE CONEXÃO OU OUTRO PROBLEMA
+            console.error('Erro ao cadastrar:', erro);
+            alert('Erro ao conectar ao servidor. Tente novamente mais tarde.');
+        } finally {
+            // REABILITAR O BOTÃO E RESTAURAR O TEXTO (SEMPRE)
+            btnSubmitCadastro.disabled = false;
+            btnSubmitCadastro.textContent = textoBotaoOriginal;
+        }
+    });
+}
