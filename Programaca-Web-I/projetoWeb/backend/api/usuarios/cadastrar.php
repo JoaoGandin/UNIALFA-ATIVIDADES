@@ -131,7 +131,7 @@ $stmt_verificar->close();
 $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
 
 // Preparar statement para inserir novo usuário
-$sql_inserir = 'INSERT INTO usuarios (nome, email, senha, data_cadastro) VALUES (?, ?, ?, NOW())';
+$sql_inserir = 'INSERT INTO usuarios (nome, email, senha) VALUES (?, ?, ?)';
 $stmt_inserir = $conn->prepare($sql_inserir);
 
 if ($stmt_inserir === false) {
